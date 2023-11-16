@@ -14,10 +14,13 @@
                                     <div class="col-span-6 sm:col-span-6">
                                         <label for="barcode"
                                             class="block text-sm font-medium text-gray-700">PROVINCE</label>
-                                        <select wire:model.lazy="name" name="name"
+                                        <select name="name" wire:model="provinceSelect" wire:change=""
                                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                            <option value="ml">Milliliter</option>
-                                            <option value="pieces">Pieces</option>
+                                            <option value="" disabled>Select Province</option>
+                                            @foreach ($province as $item)
+                                                <option value="{{ $item->code }}">{{ $item->name }}</option>
+                                            @endforeach
+
                                         </select>
                                         @error('name')
                                             <span class="text-red-600 mt-2">{{ $message }}</span>
@@ -26,43 +29,19 @@
                                     <div class="col-span-6 sm:col-span-6">
                                         <label for="barcode"
                                             class="block text-sm font-medium text-gray-700">MUNICIPALITY / CITY</label>
-                                        <select wire:model.lazy="name" name="name"
+                                        <select wire:model="selectMunicipalities" wire:change="" name="name"
                                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                            <option value="ml">Milliliter</option>
-                                            <option value="pieces">Pieces</option>
+                                            @forelse ($municipality as $data)
+                                                <option value="{{ $data->code }}">{{ $data->name }}</option>
+                                            @empty
+                                                <option value="" disabled>No Data</option>
+                                            @endforelse
                                         </select>
                                         @error('name')
                                             <span class="text-red-600 mt-2">{{ $message }}</span>
                                         @enderror
                                     </div>
-
-                                    <div class="col-span-6 sm:col-span-3">
-                                        <label for="quantity"
-                                            class="block text-sm font-medium text-gray-700">BARANGAY</label>
-                                        <select wire:model.lazy="name" name="name"
-                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                            <option value="ml">Milliliter</option>
-                                            <option value="pieces">Pieces</option>
-                                        </select>
-                                        @error('quantity')
-                                            <span class="text-red-600 mt-2">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                    <div class="col-span-6 sm:col-span-3">
-                                        <label for="stock_alert" class="block text-sm font-medium text-gray-700">Stock
-                                            Alert</label>
-                                        <input type="number" wire:model.lazy="stock_alert" name="stock_alert"
-                                            id="stock_alert"
-                                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                                        @error('stock_alert')
-                                            <span class="text-red-600 mt-2">{{ $message }}</span>
-                                        @enderror
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="py-3 text-right">
-                                <button type="submit"
-                                    class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Save</button>
                             </div>
                         </div>
                     </form>
@@ -79,14 +58,10 @@
                                 <thead class="text-xs text-gray-700 uppercase bg-white-50">
                                     <tr>
                                         <th scope="col" class="px-6 py-3">
-                                            PROVINCE
+                                            BARANGAY NAME
                                         </th>
                                         <th scope="col" class="px-6 py-3">
-                                            MUNICIPALITY
-                                        </th>
-
-                                        <th scope="col" class="px-6 py-3">
-                                            BARANGAY
+                                            STATUS
                                         </th>
                                         <th scope="col" class="px-6 py-3">
                                             <span class="sr-only">ACTION</span>
@@ -98,16 +73,13 @@
                                         <tr class=" border-b">
                                             <th scope="row"
                                                 class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                                {{ $item }}
+                                                {{ $item->name }}
                                             </th>
                                             <td class="px-6 py-4">
 
                                             </td>
-                                            <td class="px-6 py-4">
-
-                                            </td>
                                             <td class="px-6 py-4 text-right">
-                                                <a href="#"
+                                                <a href="{{ route('barangay-profile', $item->code) }}"
                                                     class="font-medium text-blue-600 hover:underline">Edit</a>
                                             </td>
                                         </tr>

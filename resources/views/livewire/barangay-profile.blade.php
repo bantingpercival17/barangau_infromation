@@ -17,10 +17,11 @@
                 </x-slot>
 
                 <x-slot name="form">
+
                     <div class="col-span-6 sm:col-span-6">
                         <x-label for="barangay" value="{{ __('Barangay') }}" />
                         <x-input id="barangay" type="text" class="mt-1 block w-full"
-                            wire:model.defer="state.barangay" />
+                            value="{{ $profile['name'] }}" />
                         <x-input-error for="barangay" class="mt-2" />
                     </div>
 
@@ -238,7 +239,8 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">Major Crops</td>
+                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    Major Crops</td>
                                                 <td>
                                                     <x-input id="congressional_district" type="text"
                                                         class="mt-1 block w-full"
@@ -261,7 +263,8 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">Post-Harvest Facilities</td>
+                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    Post-Harvest Facilities</td>
                                                 <td>
                                                     <x-input id="congressional_district" type="text"
                                                         class="mt-1 block w-full"
@@ -292,151 +295,145 @@
 
                     </div>
                 </div>
-                {{--  <x-form-section submit="updatePassword">
+                {{-- <x-form-section submit="updatePassword">
                     <x-slot name="title">
                         {{ __('ECONOMIC INDICATORS') }}
-                    </x-slot>
+                </x-slot>
 
-                    <x-slot name="description">
-                        {{ __('List of the Barangay Officials') }}
-                    </x-slot>
+                <x-slot name="description">
+                    {{ __('List of the Barangay Officials') }}
+                </x-slot>
 
-                    <x-slot name="form">
-                        <x-label for="barangay" value="{{ __('Agriculture / Forestry / Fishery') }}" />
-                        <div class="col-span-6 sm:col-span-2">
-                            <x-label for="barangay" value="{{ __('Total Population') }}" />
-                            <x-input id="barangay" type="text" class="mt-1 block w-full"
-                                wire:model.defer="state.barangay" />
-                            <x-input-error for="barangay" class="mt-2" />
-                        </div>
+                <x-slot name="form">
+                    <x-label for="barangay" value="{{ __('Agriculture / Forestry / Fishery') }}" />
+                    <div class="col-span-6 sm:col-span-2">
+                        <x-label for="barangay" value="{{ __('Total Population') }}" />
+                        <x-input id="barangay" type="text" class="mt-1 block w-full" wire:model.defer="state.barangay" />
+                        <x-input-error for="barangay" class="mt-2" />
+                    </div>
 
-                        <div class="col-span-6 sm:col-span-2">
-                            <x-label for="political_district" value="{{ __('Population Growth Rate') }}" />
-                            <x-input id="political_district" type="text" class="mt-1 block w-full"
-                                wire:model.defer="state.political_district" />
-                        </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <x-label for="political_district" value="{{ __('Population Growth Rate') }}" />
+                        <x-input id="political_district" type="text" class="mt-1 block w-full" wire:model.defer="state.political_district" />
+                    </div>
 
-                        <div class="col-span-6 sm:col-span-2">
-                            <x-label for="congressional_district" value="{{ __('Population Density') }}" />
-                            <x-input id="congressional_district" type="text" class="mt-1 block w-full"
-                                wire:model.defer="state.congressional_district" autocomplete="new-password" />
-                            <x-input-error for="congressional_district" class="mt-2" />
-                        </div>
-                        <div class="col-span-6 sm:col-span-2">
-                            <x-label for="congressional_district" value="{{ __('Total Land Area (has.)') }}" />
-                            <x-input id="congressional_district" type="text" class="mt-1 block w-full"
-                                wire:model.defer="state.congressional_district" autocomplete="new-password" />
-                            <x-input-error for="congressional_district" class="mt-2" />
-                        </div>
-                        <div class="col-span-6 sm:col-span-2">
-                            <x-label for="congressional_district" value="{{ __('Dialect Spoken') }}" />
-                            <x-input id="congressional_district" type="text" class="mt-1 block w-full"
-                                wire:model.defer="state.congressional_district" autocomplete="new-password" />
-                            <x-input-error for="congressional_district" class="mt-2" />
-                        </div>
-                        <div class="col-span-6 sm:col-span-2">
-                            <x-label for="congressional_district" value="{{ __('Indigenous Group') }}" />
-                            <x-input id="congressional_district" type="text" class="mt-1 block w-full"
-                                wire:model.defer="state.congressional_district" autocomplete="new-password" />
-                            <x-input-error for="congressional_district" class="mt-2" />
-                        </div>
-                    </x-slot>
+                    <div class="col-span-6 sm:col-span-2">
+                        <x-label for="congressional_district" value="{{ __('Population Density') }}" />
+                        <x-input id="congressional_district" type="text" class="mt-1 block w-full" wire:model.defer="state.congressional_district" autocomplete="new-password" />
+                        <x-input-error for="congressional_district" class="mt-2" />
+                    </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <x-label for="congressional_district" value="{{ __('Total Land Area (has.)') }}" />
+                        <x-input id="congressional_district" type="text" class="mt-1 block w-full" wire:model.defer="state.congressional_district" autocomplete="new-password" />
+                        <x-input-error for="congressional_district" class="mt-2" />
+                    </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <x-label for="congressional_district" value="{{ __('Dialect Spoken') }}" />
+                        <x-input id="congressional_district" type="text" class="mt-1 block w-full" wire:model.defer="state.congressional_district" autocomplete="new-password" />
+                        <x-input-error for="congressional_district" class="mt-2" />
+                    </div>
+                    <div class="col-span-6 sm:col-span-2">
+                        <x-label for="congressional_district" value="{{ __('Indigenous Group') }}" />
+                        <x-input id="congressional_district" type="text" class="mt-1 block w-full" wire:model.defer="state.congressional_district" autocomplete="new-password" />
+                        <x-input-error for="congressional_district" class="mt-2" />
+                    </div>
+                </x-slot>
                 </x-form-section> --}}
             </div>
-             {{-- DEMOGRAPHY --}}
-             <x-section-border />
-             <div class="mt-10 sm:mt-0">
-                 <div class="md:grid md:grid-cols-3 md:gap-6 p-10">
-                     <div class="md:col-span-1">
-                         <div class="px-4 sm:px-0">
-                             <h3 class="text-lg font-medium text-gray-900">INFRASTRUCTURE INDICATORS</h3>
+            {{-- DEMOGRAPHY --}}
+            <x-section-border />
+            <div class="mt-10 sm:mt-0">
+                <div class="md:grid md:grid-cols-3 md:gap-6 p-10">
+                    <div class="md:col-span-1">
+                        <div class="px-4 sm:px-0">
+                            <h3 class="text-lg font-medium text-gray-900">INFRASTRUCTURE INDICATORS</h3>
 
-                             <p class="mt-1 text-sm text-gray-600">
-                                 List of the Barangay Officials
-                             </p>
-                         </div>
-                     </div>
-                     <div class="mt-5 md:col-span-2 md:mt-0">
-                         <div class="overflow-hidden shadow sm:rounded-md">
-                             <div class="bg-white px-4 py-5 sm:p-6">
-                                 <h3 class="text-lg font-medium leading-6 text-gray-900">Agriculture / Forestry /
-                                     Fishery</h3>
+                            <p class="mt-1 text-sm text-gray-600">
+                                List of the Barangay Officials
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mt-5 md:col-span-2 md:mt-0">
+                        <div class="overflow-hidden shadow sm:rounded-md">
+                            <div class="bg-white px-4 py-5 sm:p-6">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Agriculture / Forestry /
+                                    Fishery</h3>
 
-                                 <div class="relative overflow-x-auto  sm:rounded-lg mt-5">
-                                     <table class="w-full text-sm text-left text-gray-500  m-6">
-                                         <thead class="text-xs text-gray-700 uppercase ">
-                                             <tr>
-                                                 <th scope="col" class="px-6 py-3">
-                                                     CATEGORY
-                                                 </th>
-                                                 <th scope="col" class="px-6 py-3">
-                                                     TYPE
-                                                 </th>
+                                <div class="relative overflow-x-auto  sm:rounded-lg mt-5">
+                                    <table class="w-full text-sm text-left text-gray-500  m-6">
+                                        <thead class="text-xs text-gray-700 uppercase ">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3">
+                                                    CATEGORY
+                                                </th>
+                                                <th scope="col" class="px-6 py-3">
+                                                    TYPE
+                                                </th>
 
-                                                 <th scope="col" class="px-6 py-3">
-                                                     HAS/ NO.
-                                                 </th>
-                                             </tr>
-                                         </thead>
-                                         <tbody class="m-6">
-                                             <tr>
-                                                 <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                <th scope="col" class="px-6 py-3">
+                                                    HAS/ NO.
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="m-6">
+                                            <tr>
+                                                <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
                                                     Existing Roads</th>
-                                                 <td>
-                                                     <x-input id="congressional_district" type="text"
-                                                         class="mt-1 block w-full"
-                                                         wire:model.defer="state.congressional_district"
-                                                         autocomplete="new-password" />
-                                                     <x-input id="congressional_district" type="text"
-                                                         class="mt-1 block w-full"
-                                                         wire:model.defer="state.congressional_district"
-                                                         autocomplete="new-password" />
-                                                 </td>
-                                                 <td>
-                                                     <x-input id="congressional_district" type="text"
-                                                         class="mt-1 block w-full"
-                                                         wire:model.defer="state.congressional_district"
-                                                         autocomplete="new-password" />
-                                                     <x-input id="congressional_district" type="text"
-                                                         class="mt-1 block w-full"
-                                                         wire:model.defer="state.congressional_district"
-                                                         autocomplete="new-password" />
-                                                 </td>
-                                             </tr>
-                                             <tr>
-                                                 <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
-                                                     Water System</td>
-                                                 <td>
-                                                     <x-input id="congressional_district" type="text"
-                                                         class="mt-1 block w-full"
-                                                         wire:model.defer="state.congressional_district"
-                                                         autocomplete="new-password" />
-                                                     <x-input id="congressional_district" type="text"
-                                                         class="mt-1 block w-full"
-                                                         wire:model.defer="state.congressional_district"
-                                                         autocomplete="new-password" />
-                                                 </td>
-                                                 <td>
-                                                     <x-input id="congressional_district" type="text"
-                                                         class="mt-1 block w-full"
-                                                         wire:model.defer="state.congressional_district"
-                                                         autocomplete="new-password" />
-                                                     <x-input id="congressional_district" type="text"
-                                                         class="mt-1 block w-full"
-                                                         wire:model.defer="state.congressional_district"
-                                                         autocomplete="new-password" />
-                                                 </td>
-                                             </tr>
-                                         </tbody>
-                                     </table>
-                                 </div>
+                                                <td>
+                                                    <x-input id="congressional_district" type="text"
+                                                        class="mt-1 block w-full"
+                                                        wire:model.defer="state.congressional_district"
+                                                        autocomplete="new-password" />
+                                                    <x-input id="congressional_district" type="text"
+                                                        class="mt-1 block w-full"
+                                                        wire:model.defer="state.congressional_district"
+                                                        autocomplete="new-password" />
+                                                </td>
+                                                <td>
+                                                    <x-input id="congressional_district" type="text"
+                                                        class="mt-1 block w-full"
+                                                        wire:model.defer="state.congressional_district"
+                                                        autocomplete="new-password" />
+                                                    <x-input id="congressional_district" type="text"
+                                                        class="mt-1 block w-full"
+                                                        wire:model.defer="state.congressional_district"
+                                                        autocomplete="new-password" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                    Water System</td>
+                                                <td>
+                                                    <x-input id="congressional_district" type="text"
+                                                        class="mt-1 block w-full"
+                                                        wire:model.defer="state.congressional_district"
+                                                        autocomplete="new-password" />
+                                                    <x-input id="congressional_district" type="text"
+                                                        class="mt-1 block w-full"
+                                                        wire:model.defer="state.congressional_district"
+                                                        autocomplete="new-password" />
+                                                </td>
+                                                <td>
+                                                    <x-input id="congressional_district" type="text"
+                                                        class="mt-1 block w-full"
+                                                        wire:model.defer="state.congressional_district"
+                                                        autocomplete="new-password" />
+                                                    <x-input id="congressional_district" type="text"
+                                                        class="mt-1 block w-full"
+                                                        wire:model.defer="state.congressional_district"
+                                                        autocomplete="new-password" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                             </div>
-                         </div>
+                            </div>
+                        </div>
 
-                     </div>
-                 </div>
-             </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -3,6 +3,7 @@
 use App\Http\Livewire\Material;
 use App\Http\Livewire\BarangayProfile;
 use App\Http\Livewire\BarangayInformation;
+use App\Http\Livewire\Page\HomePageView;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -20,12 +21,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $user = User::all();
     if (count($user) > 0) {
-        return redirect('/login');
+        return redirect('/home');
     } else {
         return redirect('/register');
     }
 });
-
+Route::get('/home', HomePageView::class)->name('home');
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -35,6 +36,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
     Route::get('/material', Material::class)->name('material');
-    Route::get('/registration',BarangayInformation::class)->name('barangay-registration');
-    Route::get('/registration/profile',BarangayProfile::class)->name('barangay-profile');
+    Route::get('/registration', BarangayInformation::class)->name('barangay-registration');
+    Route::get('/registration/profile/{data}', BarangayProfile::class)->name('barangay-profile');
 });
