@@ -39,3 +39,11 @@ Route::middleware([
     Route::get('/registration', BarangayInformation::class)->name('barangay-registration');
     Route::get('/registration/profile/{data}', BarangayProfile::class)->name('barangay-profile');
 });
+Route::get('/clear-cache', function () {
+    Artisan::call('config:cache');
+    return redirect('/');
+});
+Route::get('/migrate', function () {
+    Artisan::call('migrate');
+    return redirect('/');
+});
